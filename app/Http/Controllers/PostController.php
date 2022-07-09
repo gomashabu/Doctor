@@ -3,20 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Category;
+
 
 class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        $user = Auth::user();
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(), 'user' => $user]);
     }
     
     public function show(Post $post)
     {
-        return view('posts/show')->with(['post' => $post]);
+        $user = Auth::user();
+        return view('posts/show')->with(['post' => $post, 'user' => $user]);
     }
     
     public function create(Category $category)
