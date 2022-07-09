@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(CategoriesTableSeeder::class);
         $this->call(GoodPointsTableSeeder::class);
+        $this->call(GoodPointPostTableSeeder::class);
         $this->call(AreasTableSeeder::class);
     }
 }

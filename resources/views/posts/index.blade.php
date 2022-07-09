@@ -33,9 +33,14 @@
         </div>
         {{-- test from --}}
         <div>
-            {{ $posts->are->point() }}
+            @foreach($posts as $post)
+                <h3>{{ $post->title }}</h3>
+                @foreach($post->good_points as $good_point)
+                    <p>{{ $good_point->point }}</p>
+                @foreach
+            @endforeach
         </div>
-        {{-- test to --}}
+        {{-- test from --}}
     </body>
     <script>
         function deletePost(post_id) {

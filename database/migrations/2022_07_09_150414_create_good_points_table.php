@@ -14,8 +14,8 @@ class CreateGoodPointsTable extends Migration
     public function up()
     {
         Schema::create('good_points', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('post_id');
+            $table->increments('id');
+            // $table->integer('post_id');  // 中間テーブルを作ったため、削除 (good_point_post_table内にpost_idとgood_point_idのリンクを記載)
             $table->string('point', 20);
             $table->timestamps();
         });
