@@ -4,7 +4,7 @@
     <h1>投稿詳細ページ</h1>
     <h2 class="title">
         タイトル：{{ $post->title }}
-    </h1>
+    </h2>
     <div class="content">
         <div class="content__post">
             <p>本文：{{ $post->body }}</p>    
@@ -16,6 +16,13 @@
                     {{ $good_point->point }}<br>
                 @endforeach
             </p>
+        </div>
+        <div class='comment'>
+            <h3>コメント</h3>
+            @foreach($comments as $comment)
+                <p>・{{$comment->comment}}</p>
+            @endforeach
+            <h3>
         </div>
     </div>
     @if (Auth::check() && $user->host_flg == '1')

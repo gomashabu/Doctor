@@ -16,10 +16,10 @@ class Post extends Model
         'user_id',
         ];
     
-    function getPaginateByLimit(int $limit_count = 5)
+    /*function getPaginateByLimit(int $limit_count = 5)
     {
         return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    }
+    }*/
     
     public function comments()
     {
