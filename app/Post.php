@@ -25,7 +25,7 @@ class Post extends Model
         return $this->belongsTo('App\Category');
     }
     
-    public function good_point()
+    public function good_points()
     {
         // 一つのpostに多数のGood points (自慢ポイント) が設定できる
         return $this->belongsToMany('App\GoodPoint');

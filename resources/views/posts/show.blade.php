@@ -18,6 +18,14 @@
                 <p>本文：{{ $post->body }}</p>    
             </div>
         </div>
+        <div class="good_points">
+            <p>** Good Points **
+            <br>
+                @foreach($post->good_points as $good_point)
+                    {{ $good_point->point }}<br>
+                @endforeach
+            </p>
+        </div>
         <div class="footer">
             <p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
             <a href="/">一覧ページへ戻る</a>
