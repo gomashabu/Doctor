@@ -14,7 +14,7 @@ class AddCategoryIdToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->integer('category_id')->unsigned(); //カテゴリーidの追加
+            // $table->integer('category_id')->unsigned(); //カテゴリーidの追加  // area_idをcreateのファイルに追記したため、ここは削除した
         });
     }
 
