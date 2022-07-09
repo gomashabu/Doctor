@@ -18,7 +18,6 @@
                 <p>本文：{{ $post->body }}</p>    
             </div>
         </div>
-        <p>カテゴリー:<a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a></p>
         <div class="footer">
             <p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
             <a href="/">一覧ページへ戻る</a>
