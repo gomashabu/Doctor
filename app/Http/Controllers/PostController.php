@@ -56,4 +56,15 @@ class PostController extends Controller
         return redirect('/');
     }
     
+    public function search(Request $request, Post $post)
+    {
+        $user = Auth::user();
+        $input = $request['key_words'];
+        $ls_words = explode("_", $input);
+        //dd($input);
+        //$post->fill($input)->save();
+        // return view('posts/search')->with(['posts' => $post->searchByGoodPoints(), 'user' => $user]);
+        return view('posts/search');  // 作成途中
+    }
+    
 }

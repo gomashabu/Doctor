@@ -24,5 +24,7 @@ Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリ
 
 Auth::routes();
 
+Route::post('/posts/search', 'PostController@search'); //検索
+
 
 Route::get('/home', 'HomeController@index')->name('home');
