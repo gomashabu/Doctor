@@ -25,7 +25,8 @@ class PostController extends Controller
     
     public function create(Category $category)
     {
-        return view('posts/create')->with(['categories' => $category->get()]);;
+        $user = Auth::user();
+        return view('posts/create')->with(['categories' => $category->get(), 'user' => $user]);;
     }
     
     public function store(PostRequest $request, Post $post)
@@ -37,7 +38,8 @@ class PostController extends Controller
     
     public function edit(Post $post)
     {
-        return view('posts/edit')->with(['post' => $post]);
+        $user = Auth::user();
+        return view('posts/edit')->with(['post' => $post, 'user' => $user]);
     }
     
     public function update(PostRequest $request, Post $post)
