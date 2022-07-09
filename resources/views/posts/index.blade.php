@@ -16,7 +16,6 @@
                         タイトル：<a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
                     <p class='body'>本文：{{ $post->body}}</p>
-                    <p>カテゴリー:<a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a></p>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}"  method="post" style="display:inline">
                         @csrf
                         @method('DELETE')
@@ -31,16 +30,6 @@
         <div>
             [<a href='/posts/create'>新規作成</a>]
         </div>
-        {{-- test from --}}
-        <div>
-            @foreach($posts as $post)
-                <h3>{{ $post->title }}</h3>
-                @foreach($post->good_points as $good_point)
-                    <p>{{ $good_point->point }}</p>
-                @foreach
-            @endforeach
-        </div>
-        {{-- test from --}}
     </body>
     <script>
         function deletePost(post_id) {

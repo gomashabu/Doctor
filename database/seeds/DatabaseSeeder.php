@@ -15,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(GoodPointsTableSeeder::class);
         $this->call(GoodPointPostTableSeeder::class);
         $this->call(AreasTableSeeder::class);
+        $this->call(UsersTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
     }
 }
