@@ -31,11 +31,6 @@
         <div>
             [<a href='/posts/create'>新規作成</a>]
         </div>
-        {{-- test from --}}
-        <div>
-            {{ $posts->are->point() }}
-        </div>
-        {{-- test to --}}
     </body>
     <script>
         function deletePost(post_id) {
