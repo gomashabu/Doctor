@@ -3,6 +3,7 @@
 @section('content')
     <h1>レバテックチーム開発</h1>
     <h2>投稿作成ページ</h2>
+    @if (Auth::check() && $user->host_flg == '1')
     <form action="/posts" method="POST">
         @csrf
         <div class="title">
@@ -25,5 +26,8 @@
         </div>
         <input type="submit" value="保存"/>
     </form>
+    @else
+    <h1 "color:#ff0000">投稿の新規作成は許可されていません</h1>
+    @endif
     <div class="back">[<a href="/">戻る</a>]</div>
 @endsection

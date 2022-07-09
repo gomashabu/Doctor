@@ -2,6 +2,7 @@
 
 @section('content')
     <h1 class="title">編集画面</h1>
+    @if (Auth::check() && $user->host_flg == '1')
     <div class="content">
         <form action="/posts/{{ $post->id }}" method="POST">
             @csrf
@@ -17,4 +18,8 @@
             <input type="submit" value="保存">
         </form>
     </div>
+    @else
+    <h1 style="color:#ff0000">投稿の編集は許可されていません</h1>
+    @endif
+    <div class="back">[<a href="/">戻る</a>]</div>
 @endsection
