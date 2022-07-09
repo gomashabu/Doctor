@@ -9,6 +9,14 @@
         <div class="content__post">
             <p>本文：{{ $post->body }}</p>    
         </div>
+        <div class="good_points">
+            <p>** Good Points **
+            <br>
+                @foreach($post->good_points as $good_point)
+                    {{ $good_point->point }}<br>
+                @endforeach
+            </p>
+        </div>
     </div>
     @if (Auth::check() && $user->host_flg == '1')
         <div class="footer">
