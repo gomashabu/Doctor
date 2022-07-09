@@ -3,7 +3,7 @@
 @section('content')
     <h1>レバテックチーム開発</h1>
     
-    <form action="/posts/search" method="POST">
+    <form action="/search" method="POST">
         @csrf
         <div class="key_words">
             <input type="text" name="good_points" placeholder="Key words"/>
@@ -11,8 +11,9 @@
         </div>
     </form>
     
-    <h2>投稿一覧ページ</h2>
+    <h2>検索結果</h2>
     <div class='posts'>
+        {{--
         @foreach($posts as $post)
             <div class='post'>
                 <h2 class='title'>
@@ -23,14 +24,15 @@
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}"  method="post" style="display:inline">
                         @csrf
                         @method('DELETE')
-                        <button type="button" onClick="deletePost({{$post->id}});">削除</button> {{--script内に定義したdeletePostを使用している--}}
+                        <button type="button" onClick="deletePost({{$post->id}});">削除</button> {{--script内に定義したdeletePostを使用している--}} {{--
                     </form>
                 @endif
             </div>
         @endforeach
+        --}}
     </div>
     <div class='paginate'>
-        {{ $posts->links() }}
+        {{-- {{ $posts->links() }} --}}
     </div>
     @if (Auth::check() && $user->host_flg == '1')
         <div>
