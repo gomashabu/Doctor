@@ -22,4 +22,9 @@ class Comment extends Model
     {
         return $this->belongsTo('App\post');
     }
+    
+    public function getPaginateByLimit(int $limit_count = 5)
+    {
+        return $this->orderBy('created_at', 'DESC')->paginate($limit_count);
+    }
 }

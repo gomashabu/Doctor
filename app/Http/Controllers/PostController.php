@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Category;
+use App\Comment;
 
 
 class PostController extends Controller
@@ -14,13 +15,14 @@ class PostController extends Controller
     public function index(Post $post)
     {
         $user = Auth::user();
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit(), 'user' => $user]);
+        return view('posts/index')->with(['posts' => $post->get()/*->getPaginateByLimit()*/, 'user' => $user]);
     }
     
-    public function show(Post $post)
+    public function show(Post $post, Comment $comment)
     {
         $user = Auth::user();
-        return view('posts/show')->with(['post' => $post, 'user' => $user]);
+        $comment->where('post_id', '=', $post->id)->get();
+        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $comment->getPaginateByLimit()]);
     }
     
     public function create(Category $category)
