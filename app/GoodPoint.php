@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class GoodPoint extends Model
 {
+    protected $fillable = [
+        'point', 
+    ];
+    
     public function posts()
     {
         //1つのGood point (自慢ポイント) が多数のpostで引かれる。
