@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddCategoryIdToPostsTable extends Migration
+class CreateAreasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddCategoryIdToPostsTable extends Migration
      */
     public function up()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            $table->integer('category_id')->unsigned(); //カテゴリーidの追加
+        Schema::create('areas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', 50); //カテゴリー名
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddCategoryIdToPostsTable extends Migration
      */
     public function down()
     {
-        Schema::table('posts', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('areas');
     }
 }
