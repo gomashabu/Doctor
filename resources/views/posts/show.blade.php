@@ -2,6 +2,7 @@
 
 @section('content')
     <h1>投稿詳細ページ</h1>
+    <br>
     <h2 class="title">
         タイトル：{{ $post->title }}
     </h2>
@@ -9,14 +10,14 @@
         <div class="content__post">
             <p>本文：{{ $post->body }}</p>    
         </div>
+        <br>
         <div class="good_points">
-            <p>** Good Points **
-            <br>
+            <h3>推しポイント</h3>
                 @foreach($post->good_points as $good_point)
-                    {{ $good_point->point }}<br>
+                    <p>・{{ $good_point->point }}</p>
                 @endforeach
-            </p>
         </div>
+        <br>
         <div class='comment_reading'>
             <h3>コメント</h3>
             @foreach($comments as $comment)
@@ -24,6 +25,7 @@
             @endforeach
             <p>いいね：{{$good}}</p>
         </div>
+        <br>
         @if(Auth::check())
         <div class='comment_writing'>
             <form action="/posts/comment/{{$post->id}}" method="POST">
@@ -46,6 +48,7 @@
         </div>
         @endif
     </div>
+    <br>
     @if (Auth::check() && $user->host_flg == '1')
         <div class="footer">
             <p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
