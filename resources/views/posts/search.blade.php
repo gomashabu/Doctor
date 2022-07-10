@@ -3,7 +3,7 @@
 @section('content')
     <h1>レバテックチーム開発</h1>
     
-    <form action="/posts/search" method="POST">
+    <form action="/posts/search" method="GET">
         @csrf
         <div class="key_words">
             <input type="text" name="key_words" placeholder="Key words" value="{{ $input }}"/>
@@ -11,7 +11,7 @@
         </div>
     </form>
     
-    <h2>検索結果</h2>
+    <h2>{{ $input }} の検索結果</h2>
     <div class='posts'>
         @foreach($posts as $post)
             <div class='post'>
@@ -22,14 +22,18 @@
             </div>
         @endforeach
     </div>
+    {{--
     <div class='paginate'>
         {{ $posts->links() }}
-    </div>
+    </div> 
+    --}}
+
     @if (Auth::check() && $user->host_flg == '1')
         <div>
             [<a href='/posts/create'>新規作成</a>]
         </div>
     @endif
+    <div class="back"><p>[<a href="/">戻る</a>]</p>
     <script>
         function deletePost(post_id) {
             form = document.getElementById('form_' + post_id);  //各投稿ごとのdeleteのformを取得
