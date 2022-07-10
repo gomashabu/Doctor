@@ -29,9 +29,9 @@
             </div>
         @endforeach
     </div>
-    <div class='paginate'>
-        {{ $posts->links() }}
-    </div>
+    <!--<div class='paginate'>
+        
+    </div>-->
     @if (Auth::check() && $user->host_flg == '1')
         <div>
             [<a href='/posts/create'>新規作成</a>]

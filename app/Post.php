@@ -12,17 +12,28 @@ class Post extends Model
     protected $fillable = [
         'title',
         'body',
-        'category_id',
+        'area_id',
+        'user_id',
         ];
     
-    function getPaginateByLimit(int $limit_count = 5)
+    /*function getPaginateByLimit(int $limit_count = 5)
     {
         return $this::with('category')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }*/
+    
+    public function comments()
+    {
+        return $this->hasMany('App\Category');
     }
     
-    public function category()
+    public function user()
     {
-        return $this->belongsTo('App\Category');
+        return $this->belongsTo('App\user');
+    }
+    
+    public function area()
+    {
+        return $this->belongsTo('App\area');
     }
     
     public function good_points()
