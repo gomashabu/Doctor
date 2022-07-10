@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
 {
+    protected $fillable = [
+        'name', 
+    ];
+    
     public function posts()
     {
         return $this->hasMany('App\Post');

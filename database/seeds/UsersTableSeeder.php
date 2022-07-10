@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'host_flg' => '1',
             'created_at' => now(),
             'updated_at' => now(),
-                ],
-            ]);
+            ],
+        ]);
     }
 }
