@@ -38,30 +38,24 @@ class AreasTableSeeder extends Seeder
                 ],
                 [
             'id' => '5',
-            'name' => '中部',
-            'created_at' => now(),
-            'updated_at' => now(),
-                ],
-                [
-            'id' => '6',
             'name' => '近畿',
             'created_at' => now(),
             'updated_at' => now(),
                 ],
                 [
-            'id' => '7',
+            'id' => '6',
             'name' => '中国',
             'created_at' => now(),
             'updated_at' => now(),
                 ],
                 [
-            'id' => '8',
+            'id' => '7',
             'name' => '四国',
             'created_at' => now(),
             'updated_at' => now(),
                 ],
                 [
-            'id' => '9',
+            'id' => '8',
             'name' => '九州',
             'created_at' => now(),
             'updated_at' => now(),
