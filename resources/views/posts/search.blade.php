@@ -10,6 +10,7 @@
             <input type="submit" value="検索"/>
         </div>
     </form>
+    <br>
     
     <h2>{{ $input }} の検索結果</h2>
     <div class='posts'>
