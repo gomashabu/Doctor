@@ -21,8 +21,16 @@ class PostController extends Controller
     public function show(Post $post, Comment $comment)
     {
         $user = Auth::user();
-        $comment->where('post_id', '=', $post->id)->get();
-        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $comment->getPaginateByLimit()]);
+        $comment = $comment->where('post_id', '=', $post->id)->take(10)->get();
+        $good = 0.0;
+        if(count($comment) !== 0){
+            for($i=0; $i<count($comment); $i++){
+                $good += $comment[$i]->good;
+            }
+            $good /= count($comment);
+        }
+        $good = round($good,1);
+        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $comment, 'good' => $good]);
     }
     
     public function create(Category $category)
