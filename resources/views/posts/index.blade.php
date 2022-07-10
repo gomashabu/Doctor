@@ -3,7 +3,7 @@
 @section('content')
     <h1>レバテックチーム開発</h1>
     
-    <form action="/posts/search" method="POST">
+    <form action="/posts/search" method="GET">
         @csrf
         <div class="key_words">
             <input type="text" name="key_words" placeholder="Key words"/>

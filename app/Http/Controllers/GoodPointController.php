@@ -16,7 +16,7 @@ class GoodPointController extends Controller
         $ls_words = explode(" ", $input_converted);
         //$post = $post->find(1);
         //dd($ls_words);
-        return view('posts/search')->with(['posts' => $good_point->search($ls_words[0]), 
+        return view('posts/search')->with(['posts' => $good_point->andSearch($ls_words), 
                                             'user' => $user, 
                                             'input' => $input_converted]);  // 作成途中
     }
