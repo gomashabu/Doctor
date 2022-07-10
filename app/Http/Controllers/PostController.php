@@ -56,15 +56,17 @@ class PostController extends Controller
         return redirect('/');
     }
     
-    public function search(Request $request, Post $post)
+    public function search(Request $request, Post $post, GoodPoint $good_point)
     {
         $user = Auth::user();
-        $input = $request['key_words'];
-        $ls_words = explode("_", $input);
-        //dd($input);
-        //$post->fill($input)->save();
-        // return view('posts/search')->with(['posts' => $post->searchByGoodPoints(), 'user' => $user]);
-        return view('posts/search');  // 作成途中
+        $input = $request->input('key_words');
+        $input_converted = mb_convert_kana($input, 's');
+        $ls_words = explode(" ", $input_converted);
+        $post = $post->find(1);
+        //dd($ls_words);
+        return view('posts/search')->with(['posts' => $good_point->search($ls_words[0]), 
+                                            'user' => $user, 
+                                            'input' => $input_converted]);  // 作成途中
     }
     
 }

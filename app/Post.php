@@ -31,9 +31,12 @@ class Post extends Model
         return $this->belongsToMany('App\GoodPoint');
     }
     
-    function searchByGoodPoints(int $limit_count = 5)
+    /*
+    function searchByGoodPoints($input, int $limit_count = 5)
     {
-        return $this::with('id')->orderBy('updated_at', 'DESC')->paginate($limit_count);
+        dd($this->good_points()->get());
+        return $this->good_points()->where('point', 'like', $input)->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    */  // GoodPointモデルにsearch functionを入れたため、削除
     
 }
