@@ -2,7 +2,7 @@
 
 @section('content')
     <div class='content'>
-        <h1>hello {{Auth::user()->name}}</h1>
+        <h1>hello {{Auth::user()->name}} !</h1>
         <p>コメントリスト
         <table border="1">
             <tr>

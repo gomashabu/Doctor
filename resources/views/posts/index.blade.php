@@ -2,7 +2,8 @@
 
 @section('content')
     <p>[<a href='/apply'>新規ユーザ登録</a>]</p>
-    <form action="/posts/search" method="POST">
+
+    <form action="/posts/search" method="GET">
         @csrf
         <div class="key_words">
             <input type="text" name="key_words" placeholder="Key words"/>
