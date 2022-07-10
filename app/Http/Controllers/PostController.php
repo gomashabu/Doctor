@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $show_comment = [];
-        $comment = $comment->where('post_id', '=', $post->id)->take(5)->get();
+        $comment = $comment->where('post_id', '=', $post->id)->orderby('created_at','DESC')->limit(5)->get();
         for($i = 0; $i < count($comment) ; $i++){
             if(!empty($comment[$i]->comment)){
                 $show_comment[] = $comment[$i]->comment;
@@ -85,10 +85,17 @@ class PostController extends Controller
     
     public function comment_store(Request $request, Comment $comment, Post $post)
     {
+        $random = mt_rand(0,100);
         $user = Auth::user();
         $input = $request->input();
         $comment->fill(['comment'=>$input['comment'], 'post_id'=>$post->id, 'user_id'=>$user->id, 'good'=>$input['good']])->save();
-        return redirect('/posts/'.$post->id);
+        if($random > 10){
+            $user->coupon += 1;
+            $user->save();
+            return view('posts/coupon_get')->with(['post'=>$post]);
+        }else{
+            return redirect('/posts/'.$post->id);
+        }
     }
 }
 
