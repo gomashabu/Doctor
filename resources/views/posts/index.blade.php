@@ -1,7 +1,7 @@
-@extends('layouts.app')　　　　　　　　　　　　　　　　　　・・・　２
+@extends('layouts.app')
 
 @section('content')
-    <h1>レバテックチーム開発</h1>
+    <h1>トップページ</h1>
     
     <form action="/posts/search" method="GET">
         @csrf

@@ -18,6 +18,6 @@ class GoodPointController extends Controller
         //dd($ls_words);
         return view('posts/search')->with(['posts' => $good_point->andSearch($ls_words), 
                                             'user' => $user, 
-                                            'input' => $input_converted]);  // 作成途中
+                                            'input' => $input_converted]);
     }
 }

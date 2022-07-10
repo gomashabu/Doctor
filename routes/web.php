@@ -20,6 +20,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/posts', 'PostController@store'); //投稿保存操作
     Route::delete('/posts/{post}', 'PostController@delete'); //投稿削除
     Route::post('/posts/comment/{post}', 'PostController@comment_store'); //コメントの保存
+    Route::get('/mypage', 'PostController@mypage'); //マイページの表示
+    Route::delete('/comment/{comment}', 'PostController@comment_delete');
 });
 
 
@@ -33,6 +35,8 @@ Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリ
 Auth::routes();
 
 Route::get('/posts/search', 'GoodPointController@search'); //検索
+
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

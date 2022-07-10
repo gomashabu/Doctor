@@ -17,6 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title', 50); //タイトル
             $table->string('body', 200); //本文
+            $table->string('lat', 30); //緯度
+            $table->string('lng', 30); //経度
             $table->integer('area_id'); // 地域 (北海道、東北、...)
             $table->timestamps();
             $table->softDeletes();

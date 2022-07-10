@@ -1,4 +1,4 @@
-@extends('layouts.app')　　　　　　　　　　　　　　　　　　・・・　２
+@extends('layouts.app')
 
 @section('content')
     <h1>レバテックチーム開発</h1>
@@ -27,6 +27,7 @@
         {{ $posts->links() }}
     </div> 
     --}}
+
     @if (Auth::check() && $user->host_flg == '1')
         <div>
             [<a href='/posts/create'>新規作成</a>]

@@ -8,6 +8,8 @@ use App\Http\Requests\PostRequest;
 use App\Post;
 use App\Category;
 use App\Comment;
+use App\Area;
+use App\GoodPoint;
 
 
 class PostController extends Controller
@@ -22,7 +24,7 @@ class PostController extends Controller
     {
         $user = Auth::user();
         $show_comment = [];
-        $comment = $comment->where('post_id', '=', $post->id)->take(5)->get();
+        $comment = $comment->where('post_id', '=', $post->id)->orderby('created_at','DESC')->limit(5)->get();
         for($i = 0; $i < count($comment) ; $i++){
             if(!empty($comment[$i]->comment)){
                 $show_comment[] = $comment[$i]->comment;
@@ -39,15 +41,15 @@ class PostController extends Controller
         return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $show_comment, 'good' => $good]);
     }
     
-    public function create(Category $category)
+    public function create(Area $area, GoodPoint $goodPoint)
     {
         $user = Auth::user();
-        return view('posts/create')->with(['categories' => $category->get(), 'user' => $user]);;
+        return view('posts/create')->with(['user' => $user, 'areas' => $area->get(), 'goodPoints' => $goodPoint->get()]);;
     }
     
     public function store(PostRequest $request, Post $post)
     {
-        $input = $request['post'];
+        $input = $request->input('post');
         $post->fill($input)->save();
         return redirect('/posts/' . $post->id);
     }
@@ -87,10 +89,30 @@ class PostController extends Controller
     
     public function comment_store(Request $request, Comment $comment, Post $post)
     {
+        $random = mt_rand(0,100);
         $user = Auth::user();
         $input = $request->input();
         $comment->fill(['comment'=>$input['comment'], 'post_id'=>$post->id, 'user_id'=>$user->id, 'good'=>$input['good']])->save();
-        return redirect('/posts/'.$post->id);
+        if($random > 10){
+            $user->coupon += 1;
+            $user->save();
+            return view('posts/coupon_get')->with(['post'=>$post]);
+        }else{
+            return redirect('/posts/'.$post->id);
+        }
+    }
+    
+    public function mypage(Comment $comment,Post $post)
+    {
+        $user = Auth::user();
+        $comment = $comment->where('user_id', '=', $user->id)->get();
+        return view('posts/mypage')->with(['comments' => $comment, 'post' => $post->get()]);
+    }
+    
+    public function comment_delete(Comment $comment)
+    {
+        $comment->delete();
+        return redirect('/mypage');
     }
 }
 
