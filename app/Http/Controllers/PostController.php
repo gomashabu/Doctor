@@ -77,4 +77,12 @@ class PostController extends Controller
         return view('posts/search');  // 作成途中
     }
     
+    public function comment_store(Request $request, Comment $comment, Post $post)
+    {
+        $user = Auth::user();
+        $input = $request->input();
+        $comment->fill(['comment'=>$input['comment'], 'post_id'=>$post->id, 'user_id'=>$user->id, 'good'=>$input['good']])->save();
+        return redirect('/posts/'.$post->id);
+    }
 }
+
