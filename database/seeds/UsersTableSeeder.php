@@ -23,6 +23,16 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
             ],
+            [
+            'id' => '2',
+            'name' => '工藤静香',
+            'email' => 'Shizuka@gmail.com',
+            'login_id' => '1001',
+            'password' => bcrypt('Shizuka'),
+            'host_flg' => '0',
+            'created_at' => now(),
+            'updated_at' => now(),
+            ],
         ]);
     }
 }
