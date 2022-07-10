@@ -18,7 +18,7 @@
     </div>
     <script src="{{ asset('js/create.js') }}" defer></script>
     <!-- APIを取得 -->
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCMkFt69i6dSGQgSPgHtzJgP7AmfVBmbQU" async defer></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key={{ $api_key }}" async defer></script>
     
     <form action="/posts" method="POST">
         @csrf
