@@ -16,12 +16,14 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
+        $api_key = config('app.api_key');
         $user = Auth::user();
-        return view('posts/index')->with(['posts' => $post->get()/*->getPaginateByLimit()*/, 'user' => $user]);
+        return view('posts/index')->with(['posts' => $post->get()/*->getPaginateByLimit()*/, 'user' => $user, 'api_key' => $api_key]);
     }
     
     public function show(Post $post, Comment $comment)
     {
+        $api_key = config('app.api_key');
         $user = Auth::user();
         $show_comment = [];
         $comment = $comment->where('post_id', '=', $post->id)->orderby('created_at','DESC')->limit(5)->get();
@@ -38,13 +40,14 @@ class PostController extends Controller
             $good /= count($comment);
         }
         $good = round($good,1);
-        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $show_comment, 'good' => $good]);
+        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $show_comment, 'good' => $good, 'api_key' => $api_key]);
     }
     
     public function create(Area $area, GoodPoint $goodPoint)
     {
+        $api_key = config('app.api_key');
         $user = Auth::user();
-        return view('posts/create')->with(['user' => $user, 'areas' => $area->get(), 'goodPoints' => $goodPoint->get()]);;
+        return view('posts/create')->with(['user' => $user, 'areas' => $area->get(), 'goodPoints' => $goodPoint->get(), 'api_key' => $api_key]);;
     }
     
     public function store(PostRequest $request, Post $post)
