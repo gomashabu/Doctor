@@ -29,7 +29,8 @@ Route::group(['middleware' => ['auth']], function(){
 Route::get('/', 'PostController@index'); //一覧画面
 Route::get('/posts/{post}', 'PostController@show'); //投稿詳細画面
 Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリー一覧画面
-
+Route::get('/apply', 'PostController@apply');
+Route::get('/mail', 'MailSendController@send');
 
 
 Auth::routes();
