@@ -21,7 +21,13 @@ class PostController extends Controller
     public function show(Post $post, Comment $comment)
     {
         $user = Auth::user();
-        $comment = $comment->where('post_id', '=', $post->id)->take(10)->get();
+        $show_comment = [];
+        $comment = $comment->where('post_id', '=', $post->id)->take(5)->get();
+        for($i = 0; $i < count($comment) ; $i++){
+            if(!empty($comment[$i]->comment)){
+                $show_comment[] = $comment[$i]->comment;
+            }
+        }
         $good = 0.0;
         if(count($comment) !== 0){
             for($i=0; $i<count($comment); $i++){
@@ -30,7 +36,7 @@ class PostController extends Controller
             $good /= count($comment);
         }
         $good = round($good,1);
-        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $comment, 'good' => $good]);
+        return view('posts/show')->with(['post' => $post, 'user' => $user, 'comments' => $show_comment, 'good' => $good]);
     }
     
     public function create(Category $category)
