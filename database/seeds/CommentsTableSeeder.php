@@ -21,6 +21,33 @@ class CommentsTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
             ],
+            [
+            'id' => '2',
+            'comment' => '美しい',
+            'post_id' => '1',
+            'user_id' => '1',
+            'good' => '1',
+            'created_at' => now(),
+            'updated_at' => now(),
+            ],
+            [
+            'id' => '3',
+            'comment' => '自然いっぱい',
+            'post_id' => '2',
+            'user_id' => '1',
+            'good' => '5',
+            'created_at' => now(),
+            'updated_at' => now(),
+            ],
+            [
+            'id' => '4',
+            'comment' => '行かない方が良い',
+            'post_id' => '2',
+            'user_id' => '1',
+            'good' => '1',
+            'created_at' => now(),
+            'updated_at' => now(),
+            ],
             ]);
     }
 }

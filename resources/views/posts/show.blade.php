@@ -22,7 +22,7 @@
             @foreach($comments as $comment)
                 <p>・{{$comment->comment}}</p>
             @endforeach
-            <h3>
+            <p>いいね：{{$good}}</p>
         </div>
     </div>
     @if (Auth::check() && $user->host_flg == '1')
@@ -31,4 +31,5 @@
             <a href="/">一覧ページへ戻る</a>
         </div>
     @endif
+    <div class="back"><p>[<a href="/">戻る</a>]</p>
 @endsection
