@@ -6,7 +6,7 @@
     <form action="/posts/search" method="POST">
         @csrf
         <div class="key_words">
-            <input type="text" name="good_points" placeholder="Key words"/>
+            <input type="text" name="key_words" placeholder="Key words"/>
             <input type="submit" value="Search"/>
         </div>
     </form>

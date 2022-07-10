@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
 Route::group(['middleware' => ['auth']], function(){
     Route::get('/posts/create', 'PostController@create'); //投稿作成画面
     Route::get('/posts/{post}/edit', 'PostController@edit'); //投稿編集画面
@@ -19,6 +22,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/posts/comment/{post}', 'PostController@comment_store'); //コメントの保存
 });
 
+
+
 Route::get('/', 'PostController@index'); //一覧画面
 Route::get('/posts/{post}', 'PostController@show'); //投稿詳細画面
 Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリー一覧画面
@@ -27,7 +32,7 @@ Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリ
 
 Auth::routes();
 
-Route::post('/posts/search', 'PostController@search'); //検索
+Route::post('/posts/search', 'GoodPointController@search'); //検索
 
 
 Route::get('/home', 'HomeController@index')->name('home');
