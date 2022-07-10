@@ -75,6 +75,7 @@
         </nav>
 
         <main class="py-4">
+            <p>[<a href='/mypage'>マイページ</a>]</p>
             @yield('content')
         </main>
     </div>

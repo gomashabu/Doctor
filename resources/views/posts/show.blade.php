@@ -1,4 +1,4 @@
-@extends('layouts.app')　　　　　　　　　　　　　　　　　　・・・　２
+@extends('layouts.app')
 
 @section('content')
     <h1>投稿詳細ページ</h1>

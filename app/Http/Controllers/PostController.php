@@ -99,5 +99,18 @@ class PostController extends Controller
             return redirect('/posts/'.$post->id);
         }
     }
+    
+    public function mypage(Comment $comment,Post $post)
+    {
+        $user = Auth::user();
+        $comment = $comment->where('user_id', '=', $user->id)->get();
+        return view('posts/mypage')->with(['comments' => $comment, 'post' => $post->get()]);
+    }
+    
+    public function comment_delete(Comment $comment)
+    {
+        $comment->delete();
+        return redirect('/mypage');
+    }
 }
 
