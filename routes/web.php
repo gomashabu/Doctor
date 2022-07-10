@@ -16,11 +16,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::put('/posts/{post}', 'PostController@update'); //編集操作
     Route::post('/posts', 'PostController@store'); //投稿保存操作
     Route::delete('/posts/{post}', 'PostController@delete'); //投稿削除
+    Route::post('/posts/comment/{post}', 'PostController@comment_store'); //コメントの保存
 });
 
 Route::get('/', 'PostController@index'); //一覧画面
 Route::get('/posts/{post}', 'PostController@show'); //投稿詳細画面
 Route::get('/categories/{category}', 'CategoryController@index'); //カテゴリー一覧画面
+
+
 
 Auth::routes();
 
