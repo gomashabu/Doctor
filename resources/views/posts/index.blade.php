@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>トップページ</h1>
-    
+    <p>[<a href='/apply'>新規ユーザ登録</a>]</p>
+
     <form action="/posts/search" method="GET">
         @csrf
         <div class="key_words">

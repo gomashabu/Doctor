@@ -114,5 +114,10 @@ class PostController extends Controller
         $comment->delete();
         return redirect('/mypage');
     }
+    
+    public function apply()
+    {
+        return view('posts/apply');
+    }
 }
 
