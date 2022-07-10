@@ -17,36 +17,14 @@ class GoodPoint extends Model
         return $this->belongsToMany('App\Post');
     }
     
-    
-    // public function search($key_words, int $limit_count = 5)
-    // {
-    //     $post = new Post;
-    //     $posts = Post::whereHas('good_points', function ($query) use($key_words) {
-            
-    //         // And検索で繰り返すためのfunction
-    //         dd($query);
-    //         function single_search($source, $column, $key_word) {
-    //             return $source->where($column, 'like', '%'.$key_word.'%');  // comumn名にkey_wordが含まれるものを部分一致で取ってくる。
-    //         }
-            
-    //         $posts_dst = $query;
-    //         for ($i=0; $i<count($key_words); $i++) {  // AND検索のため繰り返す
-    //             $posts_dst = single_search($posts_dst, 'point', $key_words[$i]);
-    //             //dd($posts_dst);
-    //         }
-            
-    //     })->orderBy('updated_at', 'DESC')->paginate($limit_count);
-    //     return $posts;
-    // }
-    
-    public function search($posts, $key_word)
+    public function search($posts, $column, $key_word)
     {
         $results = [];
-        foreach ($posts as $post) {
-            $good_points = $post->good_points;
-            foreach ($good_points as $good_point) {
-                if (strpos($good_point->point, $key_word) !== false) {
-                    array_push($results, $post);
+        foreach ($posts as $post) {    // 各々のpostに対して処理を行う
+            $elements = $post->$column;    // そのpostが持つgood_pointsの一覧
+            foreach ($elements as $element) {   // 1個のpostが持つgood_point全てで繰り返す
+                if (strpos($element->point, $key_word) !== false) {    // そのgood_pointがkey_wordを含んでいたらture
+                    array_push($results, $post);    // そのpostを$resultsに格納して残す。一方、key_wordを含んでいるgood_pointが無い場合は、$resultsに格納されず除外される。
                     break;
                 }
             }
@@ -60,10 +38,13 @@ class GoodPoint extends Model
         // 最初はposts_dstにすべてのpostsを入れておいて、各々のkey_wordを含まないものを除いていく。
         //
         $posts_dst = Post::all();    // すべてのposts
-        foreach ($key_words as $key_word) {  // AND検索のため繰り返す
+        $columns = ['good_points'];
+        foreach ($columns as $column) {
+            foreach ($key_words as $key_word) {  // AND検索のため繰り返す
             // 最初の全てのpostsから、key_wordを含むものを$posts_dstとして出力する。
             // その後、残ったpostsから、key_wordを含むものを%posts_dstとして出力。これをkey_wordsの数だけ繰り返す。
-            $posts_dst = $this->search($posts_dst, $key_word);    
+            $posts_dst = $this->search($posts_dst, $column, $key_word);    
+            }
         }
         return $posts_dst;
     }

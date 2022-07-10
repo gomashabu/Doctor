@@ -10,6 +10,7 @@
             <input type="submit" value="Search"/>
         </div>
     </form>
+    <br>
     
     <h2>投稿一覧ページ</h2>
     <div class='posts'>
