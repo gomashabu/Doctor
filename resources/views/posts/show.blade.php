@@ -20,7 +20,7 @@
         <div class='comment_reading'>
             <h3>コメント</h3>
             @foreach($comments as $comment)
-                <p>・{{$comment->comment}}</p>
+                <p>・{{$comment}}</p>
             @endforeach
             <p>いいね：{{$good}}</p>
         </div>
